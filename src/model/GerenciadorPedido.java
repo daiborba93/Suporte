@@ -48,7 +48,13 @@ public class GerenciadorPedido {
     }
 
     public boolean inserir(Pedido pedido) {
-        if(pesquisar(pedido.getCpf())==null){ 
+       if (pedido.getNome().equals("")) {
+              JOptionPane.showMessageDialog(null, "Campo nome não pode estar vázio");
+                return false;
+       
+       }
+        else{
+         if(pesquisar(pedido.getCpf())==null){ 
         try {
             arquivoAcessoAleatorio.seek(arquivoAcessoAleatorio.length());
             escreveRegistro(arquivoAcessoAleatorio, pedido);
@@ -62,6 +68,8 @@ public class GerenciadorPedido {
         JOptionPane.showMessageDialog(null, "CPF já cadastrado");
         return false;
         }
+       
+          }
     }
 
     public void escreveRegistro(RandomAccessFile arquivo, Pedido pedido) throws IOException {
